@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Header = ({ children }) => {
   return (
@@ -29,22 +30,22 @@ const Header = ({ children }) => {
             <div class="flex-none hidden lg:block">
               <ul class="menu menu-horizontal">
                 <li>
-                  <a>Home</a>
+                  <Link to="/">Home</Link>
                 </li>
                 <li>
-                  <a>About</a>
+                  <Link to="/about">About</Link>
                 </li>
                 <li>
-                  <a>Appointment</a>
+                  <Link to="/appointment">Appointment</Link>
                 </li>
                 <li>
-                  <a>Review</a>
+                  <Link to="review">Review</Link>
                 </li>
                 <li>
-                  <a>Contact Us</a>
+                  <Link to="contactus">Contact Us</Link>
                 </li>
                 <li>
-                  <a>Login</a>
+                  <Link to="login">Login</Link>
                 </li>
               </ul>
             </div>
@@ -55,22 +56,22 @@ const Header = ({ children }) => {
           <label for="my-drawer-3" class="drawer-overlay"></label>
           <ul class="menu p-4 overflow-y-auto w-80 bg-base-100">
             <li>
-              <a>Home</a>
+              <Link to="/">Home</Link>
             </li>
             <li>
-              <a>About</a>
+              <Link to="/about">About</Link>
             </li>
             <li>
-              <a>Appointment</a>
+              <Link to="/appointment">Appointment</Link>
             </li>
             <li>
-              <a>Review</a>
+              <Link to="review">Review</Link>
             </li>
             <li>
-              <a>Contact Us</a>
+              <Link to="contactus">Contact Us</Link>
             </li>
             <li>
-              <a>Login</a>
+              <Link to="login">Login</Link>
             </li>
           </ul>
         </div>
