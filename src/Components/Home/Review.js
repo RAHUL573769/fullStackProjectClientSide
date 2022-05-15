@@ -10,9 +10,11 @@ const Review = ({ review }) => {
             labore sapiente iste ex omnis reiciendis exercitationem! Commodi,
             maxime exercitationem.
           </p>
-          <h2 class="card-title">Card title!</h2>
-          <div class="card-actions justify-end">
-            <button class="btn btn-primary">Buy Now</button>
+          <h2 class="card-title">{review.name}</h2>
+          <div class="avatar">
+            <div class="w-24 mask mask-hexagon">
+              <img src={review.img} alt="" />
+            </div>
           </div>
         </div>
       </div>
