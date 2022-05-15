@@ -1,6 +1,6 @@
 import React from "react";
 
-const Header = () => {
+const Header = ({ children }) => {
   return (
     <div>
       <div class="drawer drawer-end">
@@ -29,24 +29,48 @@ const Header = () => {
             <div class="flex-none hidden lg:block">
               <ul class="menu menu-horizontal">
                 <li>
-                  <a>Navbar Item 1</a>
+                  <a>Home</a>
                 </li>
                 <li>
-                  <a>Navbar Item 2</a>
+                  <a>About</a>
+                </li>
+                <li>
+                  <a>Appointment</a>
+                </li>
+                <li>
+                  <a>Review</a>
+                </li>
+                <li>
+                  <a>Contact Us</a>
+                </li>
+                <li>
+                  <a>Login</a>
                 </li>
               </ul>
             </div>
           </div>
-          Content
+          {children}
         </div>
         <div class="drawer-side">
           <label for="my-drawer-3" class="drawer-overlay"></label>
           <ul class="menu p-4 overflow-y-auto w-80 bg-base-100">
             <li>
-              <a>Sidebar Item 1</a>
+              <a>Home</a>
             </li>
             <li>
-              <a>Sidebar Item 2</a>
+              <a>About</a>
+            </li>
+            <li>
+              <a>Appointment</a>
+            </li>
+            <li>
+              <a>Review</a>
+            </li>
+            <li>
+              <a>Contact Us</a>
+            </li>
+            <li>
+              <a>Login</a>
             </li>
           </ul>
         </div>
