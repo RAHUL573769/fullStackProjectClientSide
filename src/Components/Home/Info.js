@@ -7,9 +7,24 @@ import image3 from "../../Images/assets/icons/phone.svg";
 const Info = () => {
   return (
     <div class="grid  grid-cols-1 lg:grid-cols-3 gap-5">
-      <InfoCard img={clock}></InfoCard>
-      <InfoCard img={image2}></InfoCard>
-      <InfoCard img={image3}></InfoCard>
+      <InfoCard
+        content="Sunday To Saturday"
+        bgClass=""
+        cardTitle="Opening Hours"
+        img={clock}
+      ></InfoCard>
+      <InfoCard
+        content="Bangladesh ,India"
+        bgClass=""
+        cardTitle="Our Locations"
+        img={image2}
+      ></InfoCard>
+      <InfoCard
+        content="12pm-7pm"
+        bgClass=""
+        cardTitle="Timings"
+        img={image3}
+      ></InfoCard>
     </div>
   );
 };
