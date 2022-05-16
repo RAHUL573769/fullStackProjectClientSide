@@ -6,7 +6,10 @@ const MakeAppointment = ({ service, setTreatment }) => {
     <div>
       <div class="card card-compact w-96 bg-base-100 shadow-xl lg:max-w-lg">
         <div class="card-body">
-          <h2 class="card-title">{service.name}</h2>
+          <h2 class="card-title">
+            {service.name}
+            {console.log(slots)}
+          </h2>
 
           <p>
             {slots.length > 0 ? (
