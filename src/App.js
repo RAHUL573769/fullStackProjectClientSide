@@ -4,6 +4,7 @@ import Appointment from "./Components/Appointment/Appointment";
 import ContactUs from "./Components/ContactUs/ContactUs";
 import Home from "./Components/Home/Home";
 import Login from "./Components/Login/Login";
+import Register from "./Components/Register/Register";
 import Review from "./Components/Review/Review";
 import Header from "./Components/Shared/Header";
 
@@ -22,6 +23,9 @@ function App() {
           <Route path="/about" element={<About></About>}></Route>
           <Route path="/contactus" element={<ContactUs></ContactUs>}></Route>
           <Route path="/login" element={<Login></Login>}></Route>
+          <Route path="/register" element={<Register></Register>}></Route>
+
+          {/* <Route path="/signup" element={<Register></Register>}</Route> */}
         </Routes>
       </Header>
     </div>
