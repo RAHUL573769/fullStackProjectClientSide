@@ -1,22 +1,39 @@
 import React from "react";
-import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import {
+  useSignInWithEmailAndPassword,
+  useSignInWithGoogle,
+} from "react-firebase-hooks/auth";
 
 import auth from "../Firebase/FirebaseInit";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [signInWithGoogle, guser, gloading, gerror] = useSignInWithGoogle(auth);
 
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
+  let signInError;
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
 
-  if (guser) {
-    console.log(guser);
+  if (guser || user) {
+    console.log(guser || user);
   }
-  const onSubmit = (data) => console.log(data);
+
+  if (loading || gloading) {
+    return <button class="btn loading">loading</button>;
+  }
+
+  if (gerror || error) {
+    signInError = <p>{gerror?.message || error?.message}</p>;
+  }
+  const onSubmit = (data) => {
+    signInWithEmailAndPassword(data.email, data.password);
+  };
   return (
     <div className="flex  h-screen justify-center items-center">
       <div class="card w-96 bg-base-100 shadow-xl">
@@ -91,9 +108,14 @@ const Login = () => {
             <input
               class="btn first-letter:input input-bordered w-full max-w-xs"
               type="submit"
+              value="Login"
             />
           </form>
 
+          {signInError}
+          <p>
+            New to Doctor's Portal?<Link to="/register">Register</Link>
+          </p>
           <div class="divider">OR</div>
           <button onClick={() => signInWithGoogle()} class="btn btn-info">
             Continue With Google
