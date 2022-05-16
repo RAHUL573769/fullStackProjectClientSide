@@ -33,20 +33,65 @@ const Login = () => {
                 placeholder="Email here"
                 class="input input-bordered w-full max-w-xs"
                 {...register("email", {
+                  required: {
+                    value: true,
+                    message: "Email Is Required",
+                  },
                   pattern: {
                     value: /[A-Za-z]{3}/,
-                    message: "error message", // JS only: <p>error message</p> TS only support string
+                    message: "Provide a Valid Email", // JS only: <p>error message</p> TS only support string
                   },
                 })}
               />
+              <label>
+                {errors.email?.type === "required" && (
+                  <span className="text-red-500">{errors.email.message}</span>
+                )}
+
+                {errors.email?.type === "pattern" && (
+                  <span className="text-red-500">{errors.email.message}</span>
+                )}
+              </label>
             </div>
-            <input {...register("firstName", { required: true })} />
-            {errors.firstName?.type === "required" && "First name is required"}
+            <div class="form-control w-full max-w-xs">
+              <label class="label">
+                <span class="label-text">Password</span>
+              </label>
+              <input
+                type="password"
+                placeholder="Password here"
+                class="input input-bordered w-full max-w-xs"
+                {...register("password", {
+                  required: {
+                    value: true,
+                    message: "Password Is Required",
+                  },
 
-            <input />
-            {errors.lastName && "Last name is required"}
+                  minLength: {
+                    value: 7,
+                    message: "Password must be 7 characters", // JS only: <p>error message</p> TS only support string
+                  },
+                })}
+              />
+              <label>
+                {errors.password?.type === "required" && (
+                  <span className="text-red-500">
+                    {errors.password.message}
+                  </span>
+                )}
 
-            <input type="submit" />
+                {errors.password?.type === " minLength" && (
+                  <span className="text-red-500">
+                    {errors.password.message}
+                  </span>
+                )}
+              </label>
+            </div>
+
+            <input
+              class="btn first-letter:input input-bordered w-full max-w-xs"
+              type="submit"
+            />
           </form>
 
           <div class="divider">OR</div>
