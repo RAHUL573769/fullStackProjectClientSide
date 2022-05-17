@@ -8,6 +8,8 @@ import RequireA from "./Components/Protected/RequireA";
 import Register from "./Components/Register/Register";
 import Review from "./Components/Review/Review";
 import Header from "./Components/Shared/Header";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
@@ -33,6 +35,8 @@ function App() {
           {/* <Route path="/signup" element={<Register></Register>}</Route> */}
         </Routes>
       </Header>
+
+      <ToastContainer />
     </div>
   );
 }

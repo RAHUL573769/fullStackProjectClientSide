@@ -1,6 +1,8 @@
 import React from "react";
 import { format } from "date-fns";
 import auth from "../Firebase/FirebaseInit";
+import { ToastContainer, toast } from "react-toastify";
+
 import { useAuthState } from "react-firebase-hooks/auth";
 
 const BookingModal = ({ date, treatment, setTreatment }) => {
@@ -22,6 +24,24 @@ const BookingModal = ({ date, treatment, setTreatment }) => {
       patientName: user.displayName,
       phone: event.target.phone.value,
     };
+    const url = "http://localhost:5000/booking";
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(booking),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result);
+
+        // if (result.success) {
+        //   toast(`Appointmneit is Set on ${formattedDate} at ${slot}`);
+        // } else {
+        //   toast(`Already hav an apoointment`);
+        // }
+      });
   };
   return (
     <div>
