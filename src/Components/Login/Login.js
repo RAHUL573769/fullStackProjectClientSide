@@ -6,7 +6,7 @@ import {
 
 import auth from "../Firebase/FirebaseInit";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [signInWithGoogle, guser, gloading, gerror] = useSignInWithGoogle(auth);
@@ -14,6 +14,10 @@ const Login = () => {
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
   let signInError;
+
+  let navigate = useNavigate();
+  let location = useLocation();
+  let from = location.state?.from?.pathname || "/";
   const {
     register,
     formState: { errors },
@@ -21,7 +25,7 @@ const Login = () => {
   } = useForm();
 
   if (guser || user) {
-    console.log(guser || user);
+    navigate(from, { replace: true });
   }
 
   if (loading || gloading) {
