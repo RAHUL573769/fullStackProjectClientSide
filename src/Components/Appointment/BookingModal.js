@@ -18,8 +18,9 @@ const BookingModal = ({ date, treatment, setTreatment }) => {
     //Taking Information for Booking
     const booking = {
       treatmentId: _id,
-      treatmentName: name,
+      treatment: name,
       date: formattedDate,
+      slot,
       patient: user.email,
       patientName: user.displayName,
       phone: event.target.phone.value,
@@ -36,11 +37,11 @@ const BookingModal = ({ date, treatment, setTreatment }) => {
       .then((result) => {
         console.log(result);
 
-        // if (result.success) {
-        //   toast(`Appointmneit is Set on ${formattedDate} at ${slot}`);
-        // } else {
-        //   toast(`Already hav an apoointment`);
-        // }
+        if (result.success) {
+          toast(`Appointmneit is Set on ${formattedDate} at ${slot}`);
+        } else {
+          toast(`Already hav an apoointment`);
+        }
       });
   };
   return (

@@ -8,7 +8,7 @@ const MakeAppointment = ({ service, setTreatment }) => {
         <div class="card-body">
           <h2 class="card-title">
             {service.name}
-            {console.log(slots)}
+            {/* {console.log(slots)} */}
           </h2>
 
           <p>
