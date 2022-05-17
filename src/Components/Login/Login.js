@@ -38,34 +38,26 @@ const Login = () => {
     <div className="flex  h-screen justify-center items-center">
       <div class="card w-96 bg-base-100 shadow-xl">
         <div class="card-body">
-          <h2 class=" text-center text-2xl ">Login!</h2>
+          <h2 class=" text-center text-2xl ">Sign Up!</h2>
 
           <form onSubmit={handleSubmit(onSubmit)}>
             <div class="form-control w-full max-w-xs">
               <label class="label">
-                <span class="label-text">Email</span>
+                <span class="label-text">Name</span>
               </label>
               <input
-                type="email"
-                placeholder="Email here"
+                type="text"
+                placeholder="Name here"
                 class="input input-bordered w-full max-w-xs"
-                {...register("email", {
+                {...register("name", {
                   required: {
                     value: true,
-                    message: "Email Is Required",
-                  },
-                  pattern: {
-                    value: /[A-Za-z]{3}/,
-                    message: "Provide a Valid Email", // JS only: <p>error message</p> TS only support string
+                    message: "Name Is Required",
                   },
                 })}
               />
               <label>
-                {errors.email?.type === "required" && (
-                  <span className="text-red-500">{errors.email.message}</span>
-                )}
-
-                {errors.email?.type === "pattern" && (
+                {errors.name?.type === "required" && (
                   <span className="text-red-500">{errors.email.message}</span>
                 )}
               </label>

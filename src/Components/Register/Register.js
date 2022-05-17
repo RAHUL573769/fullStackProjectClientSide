@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  useCreateUserWithEmailAndPassword,
   useSignInWithEmailAndPassword,
   useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
@@ -9,10 +10,11 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 
 const Register = () => {
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
+
   const [signInWithGoogle, guser, gloading, gerror] = useSignInWithGoogle(auth);
 
-  const [signInWithEmailAndPassword, user, loading, error] =
-    useSignInWithEmailAndPassword(auth);
   let signInError;
   const {
     register,
@@ -32,7 +34,9 @@ const Register = () => {
     signInError = <p>{gerror?.message || error?.message}</p>;
   }
   const onSubmit = (data) => {
-    signInWithEmailAndPassword(data.email, data.password);
+    console.log(data);
+
+    createUserWithEmailAndPassword(data.email, data.password);
   };
 
   return (
@@ -86,6 +90,40 @@ const Register = () => {
                     required: {
                       value: true,
                       message: "Password Is Required",
+                    },
+
+                    minLength: {
+                      value: 7,
+                      message: "Password must be 7 characters", // JS only: <p>error message</p> TS only support string
+                    },
+                  })}
+                />
+                <label>
+                  {errors.password?.type === "required" && (
+                    <span className="text-red-500">
+                      {errors.password.message}
+                    </span>
+                  )}
+
+                  {errors.password?.type === " minLength" && (
+                    <span className="text-red-500">
+                      {errors.password.message}
+                    </span>
+                  )}
+                </label>
+              </div>
+              <div class="form-control w-full max-w-xs">
+                <label class="label">
+                  <span class="label-text">Confirm Password</span>
+                </label>
+                <input
+                  type="password"
+                  placeholder="Confirm Password here"
+                  class="input input-bordered w-full max-w-xs"
+                  {...register("password", {
+                    required: {
+                      value: true,
+                      message: " Password Is Required",
                     },
 
                     minLength: {
