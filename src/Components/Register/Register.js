@@ -1,19 +1,22 @@
 import React from "react";
+
 import {
   useCreateUserWithEmailAndPassword,
   useSignInWithGoogle,
+  useUpdateProfile,
 } from "react-firebase-hooks/auth";
 
 import auth from "../Firebase/FirebaseInit";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { async } from "@firebase/util";
 
 const Register = () => {
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
-
+  const [updateProfile, updating, updatingError] = useUpdateProfile(auth);
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
-
+  const navigate = useNavigate();
   let signInError;
   const {
     register,
@@ -25,17 +28,22 @@ const Register = () => {
     console.log(gUser || user);
   }
 
-  if (loading || gLoading) {
+  if (loading || gLoading || updating) {
     return <button class="btn loading">loading</button>;
   }
 
-  if (gError || error) {
+  if (gError || error || updatingError) {
     signInError = <p>{gError?.message || error?.message}</p>;
   }
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log(data);
 
-    createUserWithEmailAndPassword(data.email, data.password);
+    await createUserWithEmailAndPassword(data.email, data.password);
+
+    await updateProfile({ displayName: data.name });
+
+    console.log("done");
+    navigate("/appointment");
   };
 
   return (
