@@ -1,7 +1,6 @@
 import React from "react";
 import {
   useCreateUserWithEmailAndPassword,
-  useSignInWithEmailAndPassword,
   useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
 
@@ -13,7 +12,7 @@ const Register = () => {
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
 
-  const [signInWithGoogle, guser, gloading, gerror] = useSignInWithGoogle(auth);
+  const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
 
   let signInError;
   const {
@@ -22,16 +21,16 @@ const Register = () => {
     handleSubmit,
   } = useForm();
 
-  if (guser || user) {
-    console.log(guser || user);
+  if (gUser || user) {
+    console.log(gUser || user);
   }
 
-  if (loading || gloading) {
+  if (loading || gLoading) {
     return <button class="btn loading">loading</button>;
   }
 
-  if (gerror || error) {
-    signInError = <p>{gerror?.message || error?.message}</p>;
+  if (gError || error) {
+    signInError = <p>{gError?.message || error?.message}</p>;
   }
   const onSubmit = (data) => {
     console.log(data);
@@ -49,6 +48,27 @@ const Register = () => {
             <h2 class=" text-center text-2xl ">Register!</h2>
 
             <form onSubmit={handleSubmit(onSubmit)}>
+              <div class="form-control w-full max-w-xs">
+                <label class="label">
+                  <span class="label-text">Name</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Name here"
+                  class="input input-bordered w-full max-w-xs"
+                  {...register("name", {
+                    required: {
+                      value: true,
+                      message: "Name Is Required",
+                    },
+                  })}
+                />
+                <label>
+                  {errors.name?.type === "required" && (
+                    <span className="text-red-500">{errors.name.message}</span>
+                  )}
+                </label>
+              </div>
               <div class="form-control w-full max-w-xs">
                 <label class="label">
                   <span class="label-text">Email</span>
@@ -90,40 +110,6 @@ const Register = () => {
                     required: {
                       value: true,
                       message: "Password Is Required",
-                    },
-
-                    minLength: {
-                      value: 7,
-                      message: "Password must be 7 characters", // JS only: <p>error message</p> TS only support string
-                    },
-                  })}
-                />
-                <label>
-                  {errors.password?.type === "required" && (
-                    <span className="text-red-500">
-                      {errors.password.message}
-                    </span>
-                  )}
-
-                  {errors.password?.type === " minLength" && (
-                    <span className="text-red-500">
-                      {errors.password.message}
-                    </span>
-                  )}
-                </label>
-              </div>
-              <div class="form-control w-full max-w-xs">
-                <label class="label">
-                  <span class="label-text">Confirm Password</span>
-                </label>
-                <input
-                  type="password"
-                  placeholder="Confirm Password here"
-                  class="input input-bordered w-full max-w-xs"
-                  {...register("password", {
-                    required: {
-                      value: true,
-                      message: " Password Is Required",
                     },
 
                     minLength: {
