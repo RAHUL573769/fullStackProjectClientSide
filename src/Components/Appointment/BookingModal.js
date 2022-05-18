@@ -40,7 +40,9 @@ const BookingModal = ({ date, treatment, setTreatment }) => {
         if (result.success) {
           toast(`Appointmneit is Set on ${formattedDate} at ${slot}`);
         } else {
-          toast(`Already hav an apoointment`);
+          toast(
+            `Already hav an apoointment on ${result.booking?.date} at  ${result.booking?.slot}`
+          );
         }
       });
   };
