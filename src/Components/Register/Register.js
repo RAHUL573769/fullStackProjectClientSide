@@ -10,12 +10,14 @@ import auth from "../Firebase/FirebaseInit";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { async } from "@firebase/util";
+import useToken from "../Hooks/useToken";
 
 const Register = () => {
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
   const [updateProfile, updating, updatingError] = useUpdateProfile(auth);
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+
   const navigate = useNavigate();
   let signInError;
   const {
@@ -26,6 +28,12 @@ const Register = () => {
 
   if (gUser || user) {
     console.log(gUser || user);
+  }
+
+  const [token] = useToken(gUser || user);
+
+  if (token) {
+    navigate("/appointment");
   }
 
   if (loading || gLoading || updating) {
@@ -43,7 +51,6 @@ const Register = () => {
     await updateProfile({ displayName: data.name });
 
     console.log("done");
-    navigate("/appointment");
   };
 
   return (
