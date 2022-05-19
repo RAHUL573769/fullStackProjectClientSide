@@ -9,7 +9,7 @@ const Dash = () => {
         <h2>Dash Board</h2>
         <Outlet></Outlet>
       </div>
-      <div class="drawer-side">
+      <div class=" drawer drawer-mobile">
         <label for="my-drawer-2" class="drawer-overlay"></label>
         <ul class="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
           {/* <!-- Sidebar content here --> */}
@@ -21,6 +21,8 @@ const Dash = () => {
           </li>
         </ul>
       </div>
+
+      {/* new */}
     </div>
   );
 };

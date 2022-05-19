@@ -99,14 +99,6 @@ const Header = ({ children }) => {
           </ul>
         </div>
       </div>
-      <div className="navbar-end">
-        <label
-          for="my-drawer-2"
-          className="btn btn-primary drawer-button lg:hidden"
-        >
-          Abc
-        </label>
-      </div>
     </div>
   );
 };
