@@ -5,22 +5,26 @@ import BookingModal from "./BookingModal";
 import MakeAppointment from "./MakeAppointment";
 
 const AvailableAppointments = ({ date, setDate }) => {
-  const [services, setServices] = useState([]);
+  // const [services, setServices] = useState([]);
 
   const [treatment, setTreatment] = useState(null);
 
   const formattedDate = format(date, "PP");
 
-  const { data, isLoading } = useQuery(["available", formattedDate], () =>
+  const {
+    data: services,
+    isLoading,
+    refetch,
+  } = useQuery(["available", formattedDate], () =>
     fetch(`http://localhost:5000/available?date=${formattedDate}`).then((res) =>
       res.json()
     )
   );
 
-  useEffect(() => {
-    setServices(data);
-    console.log(data);
-  }, [data]);
+  // useEffect(() => {
+  //   setServices(data);
+  //   console.log(data);
+  // }, [data]);
   if (isLoading) {
     return <button class="btn loading">loading</button>;
   }
@@ -48,6 +52,7 @@ const AvailableAppointments = ({ date, setDate }) => {
           date={date}
           setTreatment={setTreatment}
           treatment={treatment}
+          refetch={refetch}
         ></BookingModal>
       )}
     </div>

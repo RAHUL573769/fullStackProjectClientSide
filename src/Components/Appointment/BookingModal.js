@@ -5,7 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 
 import { useAuthState } from "react-firebase-hooks/auth";
 
-const BookingModal = ({ date, treatment, setTreatment }) => {
+const BookingModal = ({ date, treatment, setTreatment, refetch }) => {
   const { _id, name, slots } = treatment;
 
   const [user, loading, error] = useAuthState(auth);
@@ -44,6 +44,8 @@ const BookingModal = ({ date, treatment, setTreatment }) => {
             `Already hav an apoointment on ${result.booking?.date} at  ${result.booking?.slot}`
           );
         }
+        refetch();
+        setTreatment(null);
       });
   };
   return (
@@ -51,6 +53,12 @@ const BookingModal = ({ date, treatment, setTreatment }) => {
       <input type="checkbox" id="booking-modal" class="modal-toggle" />
       <div class="modal modal-bottom sm:modal-middle">
         <div class="modal-box">
+          <label
+            for="booking-modal"
+            class="btn btn-sm btn-circle absolute right-2 top-2"
+          >
+            ✕
+          </label>
           <h3 class="font-bold text-lg">{name}</h3>
 
           <form

@@ -52,6 +52,12 @@ const Header = ({ children }) => {
                 <li>
                   <Link to="contactus">Contact Us</Link>
                 </li>
+
+                {user && (
+                  <li>
+                    <Link to="/dashboard">Dashboard</Link>
+                  </li>
+                )}
                 <li>
                   {user ? (
                     <button onClick={logout} className="btn btn-ghost">
@@ -87,8 +93,19 @@ const Header = ({ children }) => {
             <li>
               <Link to="login">Login</Link>
             </li>
+            <li>
+              <Link to="dashboard">Dashboard</Link>
+            </li>
           </ul>
         </div>
+      </div>
+      <div className="navbar-end">
+        <label
+          for="my-drawer-2"
+          className="btn btn-primary drawer-button lg:hidden"
+        >
+          Abc
+        </label>
       </div>
     </div>
   );
