@@ -14,10 +14,13 @@ const Dash = () => {
         <ul class="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
           {/* <!-- Sidebar content here --> */}
           <li>
-            <Link to="/dashboard">Sidebar Item 1</Link>
+            <Link to="/dashboard">Dashboard</Link>
           </li>
           <li>
-            <Link to="/dashboard/review">Sidebar Item 2</Link>
+            <Link to="/dashboard/review">Review</Link>
+          </li>
+          <li>
+            <Link to="/dashboard/history">History</Link>
           </li>
         </ul>
       </div>
